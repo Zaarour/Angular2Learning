@@ -9,7 +9,7 @@ templateUrl: 'app/products/product-list.component.html'
 })
 
 export class ProductListComponent{
-    pageTitle:string="Product Lis";
+    pageTitle:string="Product List";
     products:any[]=[
          {
         "productId": 1,
