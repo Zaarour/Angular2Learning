@@ -19,7 +19,10 @@ var ProductListComponent = (function () {
         this.showImage = false;
     }
     ProductListComponent.prototype.ngOnInit = function () {
-        this.products = this._productService.getProducts();
+        var _this = this;
+        // here we subscribe to the product service and it works async. COOOL! 
+        this._productService.getProducts().subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; });
+        ;
     };
     ProductListComponent.prototype.toggleImage = function () {
         this.showImage = !this.showImage;

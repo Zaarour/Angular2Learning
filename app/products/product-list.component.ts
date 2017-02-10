@@ -22,10 +22,13 @@ export class ProductListComponent implements OnInit{
     imageMargin:number=2;
     showImage:boolean=false;
     listFilter:string;
+    errorMessage:string;
     products:IProduct[];
 
     ngOnInit():void{
-      this.products= this._productService.getProducts();
+
+        // here we subscribe to the product service and it works async. COOOL! 
+      this._productService.getProducts().subscribe(products=>this.products=products, error=>this.errorMessage=<any>error);;
     }
 
     toggleImage ():void{
