@@ -6,12 +6,22 @@ import { FormsModule } from '@angular/forms';
 import { ProductFilterPipe } from './products/product-filter.filter';
 import { StarComponent } from './shared/star.component';
 import { HttpModule } from '@angular/http';
-
-import { AppComponent }  from './app.component';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { WelcomeComponent } from './home/welcome.component';
 
 @NgModule({
-  imports: [ BrowserModule,FormsModule,HttpModule ],
-  declarations: [ AppComponent , ProductListComponent,ProductFilterPipe,StarComponent,ProductDetailComponent],
-  bootstrap: [ AppComponent ]
+  imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(
+    [
+      { path: 'products', component: ProductListComponent },
+      { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+
+    ])
+  ],
+  declarations: [AppComponent, ProductListComponent, ProductFilterPipe, StarComponent, ProductDetailComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
