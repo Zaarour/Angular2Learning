@@ -21,7 +21,7 @@ import { WelcomeComponent } from './home/welcome.component';
 
     ])
   ],
-  declarations: [AppComponent, ProductListComponent, ProductFilterPipe, StarComponent, ProductDetailComponent],
+  declarations: [AppComponent,WelcomeComponent, ProductListComponent, ProductFilterPipe, StarComponent, ProductDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
