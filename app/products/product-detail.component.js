@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router"); // this service is to read values of parameters in routes
+var router_2 = require("@angular/router");
 var ProductDetailComponent = (function () {
-    function ProductDetailComponent(_route) {
+    function ProductDetailComponent(_route, _router) {
         this._route = _route;
+        this._router = _router;
         this.pageTitle = 'Product details';
         //console.log(this._route.snapshot.params['id']);// this will get the id from the route
     }
@@ -20,13 +22,16 @@ var ProductDetailComponent = (function () {
         var id = +this._route.snapshot.params['id']; // the plus is js shortcut to convert a string to numeric
         this.pageTitle += " :" + id; //es 2015 template string
     };
+    ProductDetailComponent.prototype.onBack = function () {
+        this._router.navigate(["/products"]);
+    };
     return ProductDetailComponent;
 }());
 ProductDetailComponent = __decorate([
     core_1.Component({
         templateUrl: 'app/products/product-detail.component.html'
     }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, router_2.Router])
 ], ProductDetailComponent);
 exports.ProductDetailComponent = ProductDetailComponent;
 //# sourceMappingURL=product-detail.component.js.map
