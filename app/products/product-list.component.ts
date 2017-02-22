@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit{
     ngOnInit():void{
 
         // here we subscribe to the product service and it works async. COOOL! 
-      this._productService.getProducts().subscribe(products=>this.products=products, error=>this.errorMessage=<any>error);;
+      this._productService.getProducts().subscribe(products=>this.products=products, error=>this.errorMessage=<any>error);
     }
 
     toggleImage ():void{

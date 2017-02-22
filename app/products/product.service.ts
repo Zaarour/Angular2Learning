@@ -16,13 +16,17 @@ export class ProductService {
 
     getProducts(): Observable<IProduct[]> {
         return this._http.get(this._productServiceUrl).map((response: Response) => <IProduct[]>response.json())
-        .do(data=>console.log('All'+ JSON.stringify(data)))
-        .catch(this.handleError);
-    } 
+            .do(data => console.log('All' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+     getProduct(id:number): Observable<IProduct> {
+        return this.getProducts().map((products:IProduct[])=>products.find(x=>x.productId===id));
+    }
 
 
-    handleError(error:Response){
+    handleError(error: Response) {
         console.error(error);
-        return Observable.throw(error.json().error||'Server Error');
+        return Observable.throw(error.json().error || 'Server Error');
     }
 }
