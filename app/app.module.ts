@@ -9,19 +9,20 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
-
+import { ProductDetailGuard } from './products/product-detail.guard.service'
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(
     [
       { path: 'products', component: ProductListComponent },
-      { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'product/:id',canActivate:[ProductDetailGuard], component: ProductDetailComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
 
     ])
   ],
-  declarations: [AppComponent,WelcomeComponent, ProductListComponent, ProductFilterPipe, StarComponent, ProductDetailComponent],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, WelcomeComponent, ProductListComponent, ProductFilterPipe, StarComponent, ProductDetailComponent],
+  bootstrap: [AppComponent],
+  providers: [ProductDetailGuard]
 })
 export class AppModule { }
