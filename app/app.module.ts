@@ -23,4 +23,22 @@ export class AppModule { }
 // we then decalare the component of this module, in this case the appComp and Welcomecomp only as we moved productComp to different feature module
 
 
-// for future, we can create
+//summary
+
+
+/*
+- Every app should contain a root app module, this is normally what bootstraps AppComponent
+-A very good way of organising the app is to have feature modules, like product module, customer module etc.
+- Shared stuff belongs to one ore more sharedModules which normally used exports
+- if you have services that should be up and running at the begning of the app, consider defining a core module that runs first, be sure it is imported once in app module (providers live here)
+- Routed can be refactored in their own modules
+
+
+In general, NgModule meta data contains the following:
+- Boostrap: contains startup components, normally appModule only has this and other modules don't
+- Declarations : What belongs to this module, components ,pipes etc.
+- Export : what need to be exported to the module that imports this module
+- Import: what this module needs
+- Providers: lists the service providers, these providers are registerd in angular root injector to be available everywhere in the app
+
+ */
