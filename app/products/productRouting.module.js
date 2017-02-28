@@ -6,24 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var product_filter_filter_1 = require("./product-filter.filter");
-var productRouting_module_1 = require("./productRouting.module");
+var router_1 = require("@angular/router");
 var product_list_component_1 = require("./product-list.component");
 var product_detail_component_1 = require("./product-detail.component");
 var product_detail_guard_service_1 = require("./product-detail.guard.service");
-var product_service_1 = require("./product.service");
-var shared_module_1 = require("../shared/shared.module");
-var ProductModule = (function () {
-    function ProductModule() {
+var ProductRoutingModule = (function () {
+    function ProductRoutingModule() {
     }
-    return ProductModule;
+    return ProductRoutingModule;
 }());
-ProductModule = __decorate([
+ProductRoutingModule = __decorate([
     core_1.NgModule({
-        declarations: [product_list_component_1.ProductListComponent, product_detail_component_1.ProductDetailComponent, product_filter_filter_1.ProductFilterPipe],
-        imports: [shared_module_1.SharedModule, productRouting_module_1.ProductRoutingModule],
-        providers: [product_service_1.ProductService, product_detail_guard_service_1.ProductDetailGuard]
+        imports: [router_1.RouterModule.forChild([{ path: 'products', component: product_list_component_1.ProductListComponent },
+                { path: 'product/:id', canActivate: [product_detail_guard_service_1.ProductDetailGuard], component: product_detail_component_1.ProductDetailComponent }])],
+        exports: [router_1.RouterModule]
     })
-], ProductModule);
-exports.ProductModule = ProductModule;
-//# sourceMappingURL=product.module.js.map
+], ProductRoutingModule);
+exports.ProductRoutingModule = ProductRoutingModule;
+// feature modules routers use forChild not forRoot to ensure that we don't
+// register the routing service a second time. Only in app module do forRoot as it automatically register the service for us 
+//# sourceMappingURL=productRouting.module.js.map
