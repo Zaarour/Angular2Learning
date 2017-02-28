@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var product_module_1 = require("./products/product.module");
 var welcome_component_1 = require("./home/welcome.component");
+var appRouting_module_1 = require("./appRouting.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -19,16 +19,16 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, router_1.RouterModule.forRoot([
-                { path: 'welcome', component: welcome_component_1.WelcomeComponent },
-                { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-            ]), product_module_1.ProductModule
-        ],
+        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, product_module_1.ProductModule, appRouting_module_1.AppRoutingModule],
         declarations: [app_component_1.AppComponent, welcome_component_1.WelcomeComponent],
-        bootstrap: [app_component_1.AppComponent],
-        providers: []
+        bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
 exports.AppModule = AppModule;
+// notes, app module manages the app as a whole, the app module should be small and we should use other modules. 
+// BrowserModule is normally in this module since it is needed almost everywhere
+// routes for general pages are also everywhere
+// we then import feature modules ( in our case productModle)
+// we then decalare the component of this module, in this case the appComp and Welcomecomp only as we moved productComp to different feature module
+// for future, we can create 
 //# sourceMappingURL=app.module.js.map
